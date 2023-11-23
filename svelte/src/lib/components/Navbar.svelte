@@ -1,4 +1,4 @@
-<div class="navbar fixed top-0 bg-neutral-900/60 z-50">
+<div class="navbar fixed top-0 bg-neutral-800/20 z-50 backdrop-blur-sm">
     <div class="navbar-start">
         <div class="dropdown">
             <label tabindex="-1" class="btn btn-ghost lg:hidden" for="">
