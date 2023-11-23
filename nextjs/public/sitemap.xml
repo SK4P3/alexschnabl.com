@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://www.alexschnabl.com/</loc>
+        <lastmod>2023-03-11</lastmod>
+    </url>
+    <url>
+        <loc>https://www.alexschnabl.com/imprint</loc>
+        <lastmod>2023-03-11</lastmod>
+    </url>
+    <url>
+        <loc>https://www.alexschnabl.com/blog</loc>
+        <lastmod>2023-07-23</lastmod>
+    </url>
+    <url>
+        <loc>
+            https://www.alexschnabl.com/blog/articles/using-proxyman-to-reverse-engineer-the-instagram-private-api</loc>
+        <lastmod>2023-07-23</lastmod>
+    </url>
+    <url>
+        <loc>
+            https://www.alexschnabl.com/blog/articles/lazy-loading-images-and-components-in-svelte-and-sveltekit-using-typescript</loc>
+        <lastmod>2023-07-23</lastmod>
+    </url>
+</urlset>
