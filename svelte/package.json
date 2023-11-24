@@ -24,6 +24,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@directus/sdk": "^13.0.2",
 		"@sveltejs/adapter-cloudflare": "^2.3.3"
 	}
 }

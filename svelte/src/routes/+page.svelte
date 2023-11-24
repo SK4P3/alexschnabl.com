@@ -6,6 +6,10 @@
     import {onMount} from "svelte";
     import {currentSection, sections} from "$lib/common";
 
+    export let data: any;
+
+    console.log(data.projects);
+
     let ms = +new Date() - +new Date(2002, 9, 23);
     let age = writable<number>(Math.floor(ms / 1000));
 
@@ -30,27 +34,25 @@
         scrollContainer.addEventListener('wheel', snapScrolling);
         scrollContainer.addEventListener('touchstart', swipeStart);
         scrollContainer.addEventListener('touchmove', snapSwipe);
+
+        document.addEventListener("keydown", arrowScroll);
     });
+
+    function arrowScroll(evt: any) {
+        if (evt.key === "ArrowDown") {
+            evt.preventDefault();
+            handleScroll(true);
+        } else if (evt.key === "ArrowUp") {
+            evt.preventDefault();
+            handleScroll(false);
+        }
+    }
 
     function snapScrolling(evt: any) {
         evt.preventDefault();
         const scrollDown = evt.deltaY > 0;
 
-        if (!scrollingDisabled) {
-            scrollingDisabled = true;
-
-            if (scrollDown && $currentSection < $sections.length - 1) {
-                currentSection.update((n) => ++n);
-                scrollToSection($currentSection);
-            } else if (!scrollDown && $currentSection !== 0) {
-                currentSection.update((n) => --n);
-                scrollToSection($currentSection);
-            }
-
-            setTimeout(() => {
-                scrollingDisabled = false;
-            }, 500);
-        }
+        handleScroll(scrollDown);
     }
 
     function swipeStart(evt: any) {
@@ -64,9 +66,12 @@
 
         const touch = evt.touches[0];
         const diffY = touch.clientY - startY;
-
         const scrollDown = diffY < 0;
 
+        handleScroll(scrollDown);
+    }
+
+    function handleScroll(scrollDown: boolean) {
         if (!scrollingDisabled) {
             scrollingDisabled = true;
 
@@ -149,9 +154,9 @@
             </div>
         </div>
 
-        <div class="grid lg:grid-cols-4 gap-8 px-4 lg:px-[10vw] h-[72%] overflow-y-auto">
-            {#each Array(12) as project}
-                <ProjectCard/>
+        <div class="grid lg:grid-cols-4 gap-8 pt-4 px-4 lg:px-[10vw] h-[72%] overflow-y-auto">
+            {#each data.projects as project}
+                <ProjectCard {project}/>
             {/each}
         </div>
     </section>
