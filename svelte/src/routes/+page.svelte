@@ -4,11 +4,10 @@
     import Timeline from "$lib/components/Timeline.svelte";
     import ProjectCard from "$lib/components/ProjectCard.svelte";
     import {onMount} from "svelte";
-    import {currentSection, sections} from "$lib/common";
+    import {currentSection, getWebpUrl, ImageQuality, sections} from "$lib/common";
+    import type {PageData} from "./$types";
 
-    export let data: any;
-
-    console.log(data.projects);
+    export let data: PageData;
 
     let ms = +new Date() - +new Date(2002, 9, 23);
     let age = writable<number>(Math.floor(ms / 1000));
@@ -110,7 +109,7 @@
 <div bind:this={scrollContainer} class="overflow-x-hidden">
     <a id="home" bind:this={home}/>
     <section class="relative flex items-center h-screen w-screen bg-neutral-900">
-        <img src="/alex.png" class="absolute right-0 h-screen object-cover brightness-50 sm:brightness-100" alt='Alex Schnabl Profile'/>
+        <img src={getWebpUrl("b39bf6c9-1506-4a5b-9d7a-6a16922ffa9d", ImageQuality.HIGH)} class="absolute right-0 h-screen object-cover brightness-50 sm:brightness-100" alt='Alex Schnabl Profile'/>
         <div class="flex flex-col gap-6 text-white z-20 lg:px-20">
             <div class="flex flex-col gap-4 text-center lg:text-start">
                 <h1 class="text-2xl lg:text-3xl font-semibold uppercase">Alexander Schnabl</h1>
@@ -125,7 +124,7 @@
                 <SlideButton text="get in touch" sectionNum={3}/>
             </div>
         </div>
-        <img src="/cookie2.jpg" class="absolute top-0 left-0 h-0 w-0" alt='what could it be? the cookie monster would certainly like it!'/>
+        <img src={getWebpUrl("f5689639-755a-4132-881b-fdfd594716e2", ImageQuality.LOW)} class="absolute top-0 left-0 h-0 w-0" alt='what could it be? the cookie monster would certainly like it!'/>
     </section>
 
     <a id="about" bind:this={about}/>
@@ -145,7 +144,7 @@
     </section>
 
     <a id="projects" bind:this={projects}/>
-    <section class="relative h-screen w-screen bg-neutral-900">
+    <section class="relative min-h-screen w-screen bg-neutral-900">
 
         <div class="w-full flex items-center justify-center pt-28 lg:pt-32 relative mb-20">
             <div class="hidden sm:block w-[60vw] h-[0.1rem] bg-white"></div>
@@ -154,7 +153,7 @@
             </div>
         </div>
 
-        <div class="grid lg:grid-cols-4 gap-8 pt-4 px-4 lg:px-[10vw] h-[72%] overflow-y-auto">
+        <div class="grid lg:grid-cols-4 gap-8 py-4 px-4 lg:px-[10vw] overflow-y-auto">
             {#each data.projects as project}
                 <ProjectCard {project}/>
             {/each}
@@ -164,17 +163,17 @@
     <a id="contact" bind:this={contact}/>
     <section class="h-screen w-screen flex flex-col lg:flex-row items-center justify-center gap-8 bg-neutral-900">
         <a class="contactCard bg-[#0077b7] " target="_blank" href="https://www.linkedin.com/in/alexander-schnabl/">
-            <img src="/socials/linkedin.png" alt="contact alexander schnabl on LinkedIn" class="h-full w-full object-contain"/>
+            <img src={getWebpUrl("0a516210-2d0b-400c-a6aa-34bcb0e1810b", ImageQuality.LOW)} alt="contact alexander schnabl on LinkedIn" class="h-full w-full object-contain"/>
         </a>
         <a class="contactCard bg-[#5865f2]" target="_blank" href="https://discordapp.com/users/415490584665522177">
-            <img src="/socials/discord.png" alt="contact alex schnabl on Discord" class="h-full w-full object-contain"/>
+            <img src={getWebpUrl("d158def5-2206-4cc1-b359-a47eb0c8b7fc", ImageQuality.LOW)} alt="contact alex schnabl on Discord" class="h-full w-full object-contain"/>
         </a>
         <a class="contactCard bg-[#29a9eb]" target="_blank" href="https://t.me/botlx">
-            <img src="/socials/telegram.png" alt="contact alex schnabl on Telegram" class="h-full w-full object-contain"/>
+            <img src={getWebpUrl("b793b5fc-06a5-41a5-8964-a6d60e1c4ef5", ImageQuality.LOW)} alt="contact alex schnabl on Telegram" class="h-full w-full object-contain"/>
         </a>
         <a class="contactCard bg-gradient-to-b from-[#5770ff] to-[#70edff]" target="_blank"
            href="mailto:alexander.schnabl@ss-technologies.at">
-            <img src="/socials/mail.png" alt="contact alexander schnabl via Mail" class="h-full w-full object-contain"/>
+            <img src={getWebpUrl("08f5027a-021a-43b7-9778-3f71cea582e6", ImageQuality.LOW)} alt="contact alexander schnabl via Mail" class="h-full w-full object-contain"/>
         </a>
     </section>
 
