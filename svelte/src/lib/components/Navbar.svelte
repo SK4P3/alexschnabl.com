@@ -20,23 +20,39 @@
                 </svg>
             </label>
             <ul tabindex="-1" class="menu menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 w-52 text-white font-medium">
-                <li><a href="/#home">Home</a></li>
-                <li><a href="/#about">About</a></li>
-                <li><a href="/#projects">Projects</a></li>
-                <li><a href="/#contact">Contact</a></li>
+                <li>
+                    <button on:click={() => scrollToSection(0)}>Home</button>
+                </li>
+                <li>
+                    <button on:click={() => scrollToSection(1)}>About</button>
+                </li>
+                <li>
+                    <button on:click={() => scrollToSection(2)}>Projects</button>
+                </li>
+                <li>
+                    <button on:click={() => scrollToSection(3)}>Contact</button>
+                </li>
                 <li><a href="/blog">Blog</a></li>
             </ul>
         </div>
-        <a href="/" class="hidden lg:block font-bold text-3xl text-white pl-16">AS</a>
+        <button class="hidden lg:block font-bold text-3xl text-white pl-16" on:click={() => scrollToSection(0)}>AS</button>
     </div>
     <div class="navbar-end text-white">
         <ul class="menu menu-horizontal hidden lg:flex text-base font-semibold pr-16">
-            <li><button class="hover:underline underline-offset-2" on:click={() => scrollToSection(0)}>Home</button></li>
-            <li><button class="hover:underline underline-offset-2" on:click={() => scrollToSection(1)}>About</button></li>
-            <li><button class="hover:underline underline-offset-2" on:click={() => scrollToSection(2)}>Projects</button></li>
-            <li><button class="hover:underline underline-offset-2" on:click={() => scrollToSection(3)}>Contact</button></li>
-            <li><button class="hover:underline underline-offset-2" on:click={() => scrollToSection(4)}>Blog</button></li>
+            <li>
+                <button class="hover:underline underline-offset-2" on:click={() => scrollToSection(0)}>Home</button>
+            </li>
+            <li>
+                <button class="hover:underline underline-offset-2" on:click={() => scrollToSection(1)}>About</button>
+            </li>
+            <li>
+                <button class="hover:underline underline-offset-2" on:click={() => scrollToSection(2)}>Projects</button>
+            </li>
+            <li>
+                <button class="hover:underline underline-offset-2" on:click={() => scrollToSection(3)}>Contact</button>
+            </li>
+            <li><a href="/blog">Blog</a></li>
         </ul>
-        <a href="/" class="lg:hidden font-bold text-3xl pr-4">AS</a>
+        <button class="lg:hidden font-bold text-3xl pr-4" on:click={() => scrollToSection(0)}>AS</button>
     </div>
 </div>

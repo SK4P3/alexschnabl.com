@@ -103,8 +103,8 @@
                 </div>
             </div>
             <div class="flex flex-col lg:flex-row items-center gap-8 uppercase">
-                <SlideButton text="my work" href="/#projects"/>
-                <SlideButton text="get in touch" href="/#contact"/>
+                <SlideButton text="my work" sectionNum={2}/>
+                <SlideButton text="get in touch" sectionNum={3}/>
             </div>
         </div>
         <img src="/cookie2.jpg" class="absolute top-0 left-0 h-0 w-0" alt='what could it be? the cookie monster would certainly like it!'/>

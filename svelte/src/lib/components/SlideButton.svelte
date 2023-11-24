@@ -1,8 +1,11 @@
 <script lang="ts">
     import {fade} from 'svelte/transition';
     import {onMount} from "svelte";
+    import {page} from "$app/stores";
+    import {goto} from "$app/navigation";
+    import {currentSection, sections} from "$lib/common";
 
-    export let href: string;
+    export let sectionNum: number;
     export let text: string;
 
     let preload = true;
@@ -12,10 +15,15 @@
             preload = false;
         }, 500);
     })
+
+    async function scrollToSection(i: number) {
+        currentSection.set(i);
+        window.scrollTo({top: $sections[i].offsetTop, behavior: 'smooth'});
+    }
 </script>
 
 
-<a class="relative w-[18rem] h-16 cursor-pointer overflow-hidden border-2 border-white" href={href}>
+<div class="relative w-[18rem] h-16 cursor-pointer overflow-hidden border-2 border-white" on:click={() => scrollToSection(sectionNum)}>
     <div class="absolute btn-slide flex w-[36rem]" class:preload={preload}>
         <div class="bg-neutral-900 w-[36rem] h-15"></div>
         <div class="bg-white w-[36rem] h-16"></div>
@@ -23,7 +31,7 @@
     <div class="mix-blend-difference absolute w-full h-full flex items-center justify-center z-50 pointer-events-none">
         <b class="text-white  text-lg font-bold">{text}</b>
     </div>
-</a>
+</div>
 
 <style>
 
