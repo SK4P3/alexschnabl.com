@@ -94,6 +94,13 @@
     }
 </script>
 
+<svelte:head>
+    <title>Alex Schnabl | Personal Website</title>
+    <meta name="description" content="Portfolio of Alex Schnabl - Co-Founder, CEO and Developer at S&S Technologies GmbH. View Alex's projects and learn about his work as an expert web and IT entrepreneur.">
+    <meta name="author" content="Alexander Schnabl">
+    <meta name="keywords" content="Alex Schnabl, Alexander Schnabl, Software Developer, Software Entrepreneur, Entrepreneur, S&S Technologies GmbH, CEO, Co-Founder">
+</svelte:head>
+
 <div class="hidden sm:block">
     <div class="fixed right-8 h-screen flex items-center text-[4rem] z-50">
         <div class="flex flex-col gap-4 justify-center items-center w-4 my-8">

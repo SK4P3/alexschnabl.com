@@ -8,7 +8,9 @@
 
 <svelte:head>
     <title>Alex Schnabl | Project {project.name}</title>
-    <meta name="description" content={project.description}>
+    <meta name="author" content="Alexander Schnabl">
+    <meta name="keywords" content={`Alex Schnabl, ${project.keywords.join(", ")}, ${project.name}`}>
+    <meta name="description" content={`Learn more about Alex Schnabls Project: ${project.name}`}>
 </svelte:head>
 
 <div class="w-full min-h-screen flex flex-col justify-center bg-neutral-900 px-4 lg:px-20 pt-20 lg:pt-0">
