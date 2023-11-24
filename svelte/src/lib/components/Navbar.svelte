@@ -1,3 +1,16 @@
+<script lang="ts">
+    import {currentSection, sections} from "$lib/common";
+    import {goto} from "$app/navigation";
+    import {page} from "$app/stores";
+
+    async function scrollToSection(i: number) {
+        if ($page.url.pathname !== "/")
+            await goto("/");
+        currentSection.set(i);
+        window.scrollTo({top: $sections[i].offsetTop, behavior: 'smooth'});
+    }
+</script>
+
 <div class="navbar fixed top-0 bg-neutral-800/20 z-50 backdrop-blur-sm">
     <div class="navbar-start">
         <div class="dropdown">
@@ -18,11 +31,11 @@
     </div>
     <div class="navbar-end text-white">
         <ul class="menu menu-horizontal hidden lg:flex text-base font-semibold pr-16">
-            <li><a class="hover:underline underline-offset-2" href="/#home">Home</a></li>
-            <li><a class="hover:underline underline-offset-2" href="/#about">About</a></li>
-            <li><a class="hover:underline underline-offset-2" href="/#projects">Projects</a></li>
-            <li><a class="hover:underline underline-offset-2" href="/#contact">Contact</a></li>
-            <li><a class="hover:underline underline-offset-2" href="/blog">Blog</a></li>
+            <li><button class="hover:underline underline-offset-2" on:click={() => scrollToSection(0)}>Home</button></li>
+            <li><button class="hover:underline underline-offset-2" on:click={() => scrollToSection(1)}>About</button></li>
+            <li><button class="hover:underline underline-offset-2" on:click={() => scrollToSection(2)}>Projects</button></li>
+            <li><button class="hover:underline underline-offset-2" on:click={() => scrollToSection(3)}>Contact</button></li>
+            <li><button class="hover:underline underline-offset-2" on:click={() => scrollToSection(4)}>Blog</button></li>
         </ul>
         <a href="/" class="lg:hidden font-bold text-3xl pr-4">AS</a>
     </div>
