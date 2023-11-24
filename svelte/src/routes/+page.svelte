@@ -85,9 +85,22 @@
     }
 
     function scrollToSection(i: number) {
+        currentSection.set(i);
         window.scrollTo({top: $sections[i].offsetTop, behavior: 'smooth'});
     }
 </script>
+
+<div class="hidden sm:block">
+    <div class="fixed right-8 h-screen flex items-center text-[4rem] z-50">
+        <div class="flex flex-col gap-4 justify-center items-center w-4 my-8">
+            <button class="dot" class:dotActive={$currentSection === 0} on:click={() => scrollToSection(0)}/>
+            <button class="dot" class:dotActive={$currentSection === 1} on:click={() => scrollToSection(1)}/>
+            <button class="dot" class:dotActive={$currentSection === 2} on:click={() => scrollToSection(2)}/>
+            <button class="dot" class:dotActive={$currentSection === 3} on:click={() => scrollToSection(3)}/>
+            <button class="dot" class:dotActive={$currentSection === 4} on:click={() => scrollToSection(4)}/>
+        </div>
+    </div>
+</div>
 
 <div bind:this={scrollContainer} class="overflow-x-hidden">
     <a id="home" bind:this={home}/>
