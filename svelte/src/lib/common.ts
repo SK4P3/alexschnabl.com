@@ -31,7 +31,7 @@ export enum ImageQuality {
     HIGH = 80,
 }
 
-export const ApiRoute = "http://146.190.178.255/as"
+export const ApiRoute = "https://api.alexschnabl.com/as"
 export const currentSection = writable<number>(0);
 export const sections = writable<HTMLAnchorElement[]>([]);
 
