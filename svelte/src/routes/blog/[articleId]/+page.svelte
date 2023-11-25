@@ -27,7 +27,10 @@
 </script>
 
 <svelte:head>
-
+    <title>{data.article.name}</title>
+    <meta name="author" content="Alexander Schnabl">
+    <meta name="keywords" content={`Alex Schnabl, ${data.article.keywords.join(", ")}`}>
+    <meta name="description" content={`${data.article.description}`}>
 </svelte:head>
 
 <div class="w-screen min-h-screen flex justify-center py-20 text-white overflow-x-hidden">

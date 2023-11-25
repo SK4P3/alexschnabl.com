@@ -5,6 +5,13 @@
     export let data: PageData;
 </script>
 
+<svelte:head>
+    <title>Alex Schnabl | Blog</title>
+    <meta name="author" content="Alexander Schnabl">
+    <meta name="keywords" content="Alex Schnabl, Alexander Schnabl, Software Developer, S&S Technologies GmbH, Coding, Blog, Articles">
+    <meta name="description" content={`Read the latest thoughts, ideas, and coding adventures from Alex Schnabl. Learn about software development, technology, and programming languages in this coding blog.`}>
+</svelte:head>
+
 <div class="min-h-screen bg-neutral-900 pt-[8vh]">
     <div class="relative w-screen flex items-center justify-center">
         <div class="left-[10vw] absolute w-[80vw] h-[0.1rem] bg-white"></div>
