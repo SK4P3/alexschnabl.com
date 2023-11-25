@@ -38,7 +38,7 @@
         <button class="hidden lg:block font-bold text-3xl text-white pl-16" on:click={() => scrollToSection(0)}>AS</button>
     </div>
     <div class="navbar-end text-white">
-        <ul class="menu menu-horizontal hidden lg:flex text-base font-semibold pr-16">
+        <ul class="hidden lg:flex gap-8 text-base font-semibold pr-16">
             <li>
                 <button class="hover:underline underline-offset-2" on:click={() => scrollToSection(0)}>Home</button>
             </li>
@@ -51,7 +51,7 @@
             <li>
                 <button class="hover:underline underline-offset-2" on:click={() => scrollToSection(3)}>Contact</button>
             </li>
-            <li><a href="/blog">Blog</a></li>
+            <li><a class="hover:underline underline-offset-2" href="/blog">Blog</a></li>
         </ul>
         <button class="lg:hidden font-bold text-3xl pr-4" on:click={() => scrollToSection(0)}>AS</button>
     </div>

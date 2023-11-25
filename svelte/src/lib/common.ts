@@ -11,6 +11,16 @@ export interface Project {
     image: string;
 }
 
+export interface Blog {
+    id: string;
+    date_created: string;
+    name: string;
+    keywords: string[];
+    description: string;
+    image: string;
+    markdown: string;
+}
+
 export interface AppLocals {
     locals: Locals
 }
