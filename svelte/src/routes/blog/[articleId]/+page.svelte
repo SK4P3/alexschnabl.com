@@ -3,18 +3,33 @@
     import SvelteMarkdown from "svelte-markdown";
     import {onMount} from "svelte";
     import "./article.css"
+    import hljs from 'highlight.js/lib/core';
+    import 'highlight.js/styles/github-dark.css';
+    import xml from 'highlight.js/lib/languages/xml';
+    import css from 'highlight.js/lib/languages/css';
+    import json from 'highlight.js/lib/languages/json';
+    import javascript from 'highlight.js/lib/languages/javascript';
+    import typescript from 'highlight.js/lib/languages/typescript';
+    import shell from 'highlight.js/lib/languages/shell';
 
     export let data: PageData;
 
-    onMount(() => {
+    hljs.registerLanguage('xml', xml);
+    hljs.registerLanguage('css', css);
+    hljs.registerLanguage('json', json);
+    hljs.registerLanguage('javascript', javascript);
+    hljs.registerLanguage('typescript', typescript);
+    hljs.registerLanguage('shell', shell);
 
+    onMount(() => {
+        hljs.highlightAll();
     })
 </script>
 
-<div class="w-full min-h-screen flex justify-center pt-20 text-white">
-    <div class="flex flex-col gap-4 w-1/2">
+<div class="w-screen min-h-screen flex justify-center pt-20 text-white overflow-x-hidden">
+    <div class="flex flex-col gap-4 px-8 xl:w-[60%]">
         <a class="btn btn-sm btn-outline text-white hover:bg-white w-14" href="/blog">back</a>
         <h1 class="text-3xl font-bold underline">{data.article.name}</h1>
-        <SvelteMarkdown source={data.article.markdown} />
+        <SvelteMarkdown source={data.article.markdown}/>
     </div>
 </div>

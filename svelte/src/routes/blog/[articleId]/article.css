@@ -18,10 +18,6 @@ li code {
     @apply bg-neutral-600 px-1 py-0.5 rounded-md text-xs font-medium;
 }
 
-/*pre {*/
-/*    @apply mockup-code;*/
-/*}*/
-
-/*pre code {*/
-/*    @apply bg-transparent;*/
-/*}*/
+pre {
+    @apply max-w-[90vw];
+}
