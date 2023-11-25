@@ -2,6 +2,7 @@
     import "../app.css";
     import Navbar from "$lib/components/Navbar.svelte";
     import {fade} from "svelte/transition";
+    import Footer from "$lib/components/Footer.svelte";
 
     export let data: any;
 </script>
@@ -16,3 +17,5 @@
 <slot/>
 <!--</div>-->
 <!--{/key}-->
+
+<Footer/>

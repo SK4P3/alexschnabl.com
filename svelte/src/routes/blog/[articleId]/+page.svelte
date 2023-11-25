@@ -26,7 +26,7 @@
     })
 </script>
 
-<div class="w-screen min-h-screen flex justify-center pt-20 text-white overflow-x-hidden">
+<div class="w-screen min-h-screen flex justify-center py-20 text-white overflow-x-hidden">
     <div class="flex flex-col gap-4 px-8 xl:w-[60%]">
         <a class="btn btn-sm btn-outline text-white hover:bg-white w-14" href="/blog">back</a>
         <h1 class="text-3xl font-bold underline">{data.article.name}</h1>
