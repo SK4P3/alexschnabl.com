@@ -47,11 +47,19 @@
         }
     }
 
-    function snapScrolling(evt: any) {
-        evt.preventDefault();
-        const scrollDown = evt.deltaY > 0;
+    function excludedSnapScrolling(scrollDown: boolean) {
+        const isMobile = window.innerWidth < 768;
+        const projectsHeight = contact.offsetTop - projects.offsetTop;
+        const scrollUpInProjects = scrollDown || (window.scrollY >= (projects.offsetTop + projectsHeight * 0.1) && (projects.offsetTop + projectsHeight * 0.7) >= window.scrollY)
+        return scrollUpInProjects && isMobile && window.scrollY >= projects.offsetTop && (projects.offsetTop + projectsHeight * 0.7) >= window.scrollY
+    }
 
-        handleScroll(scrollDown);
+    function snapScrolling(evt: any) {
+        const scrollDown = evt.deltaY > 0;
+        if (!excludedSnapScrolling(scrollDown)) {
+            evt.preventDefault();
+            handleScroll(scrollDown);
+        }
     }
 
     function swipeStart(evt: any) {
@@ -60,14 +68,16 @@
     }
 
     function snapSwipe(evt: any) {
-        evt.preventDefault();
         if (!startY) return;
 
         const touch = evt.touches[0];
         const diffY = touch.clientY - startY;
         const scrollDown = diffY < 0;
 
-        handleScroll(scrollDown);
+        if (!excludedSnapScrolling(scrollDown)) {
+            evt.preventDefault();
+            handleScroll(scrollDown);
+        }
     }
 
     function handleScroll(scrollDown: boolean) {
