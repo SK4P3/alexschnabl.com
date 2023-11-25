@@ -3,6 +3,7 @@
     import Navbar from "$lib/components/Navbar.svelte";
     import {fade} from "svelte/transition";
     import Footer from "$lib/components/Footer.svelte";
+    import {page} from "$app/stores";
 
     export let data: any;
 </script>
@@ -18,4 +19,6 @@
 <!--</div>-->
 <!--{/key}-->
 
-<Footer/>
+{#if $page.url.pathname !== "/"}
+    <Footer/>
+{/if}

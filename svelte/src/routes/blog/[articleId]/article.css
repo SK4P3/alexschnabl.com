@@ -1,23 +1,27 @@
-h2 {
+#article h2 {
     @apply text-3xl font-bold;
 }
 
-h3 {
+#article h3 {
     @apply text-2xl font-bold;
 }
 
-p {
+#article p {
     @apply text-justify;
 }
 
-ol {
+#article ol {
     @apply list-decimal list-inside space-y-2 text-justify;
 }
 
-li code {
+#article li code {
     @apply bg-neutral-600 px-1 py-0.5 rounded-md text-xs font-medium;
 }
 
-pre {
+#article pre {
     @apply max-w-[90vw];
+}
+
+#article img {
+    @apply max-w-[85vw];
 }
