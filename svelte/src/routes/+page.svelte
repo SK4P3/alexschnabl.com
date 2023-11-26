@@ -14,6 +14,7 @@
     let scrollingDisabled = false;
 
     let startY: number;
+    let isMobile = false;
 
     let home: HTMLAnchorElement;
     let about: HTMLAnchorElement;
@@ -22,6 +23,8 @@
     let imprint: HTMLAnchorElement;
 
     onMount(() => {
+        isMobile = window.innerWidth <= 900;
+
         sections.set([home, about, projects, contact, imprint]);
         scrollContainer.addEventListener('wheel', snapScrolling);
         scrollContainer.addEventListener('touchstart', swipeStart);
@@ -149,7 +152,7 @@
     <a id="projects" bind:this={projects}/>
     <section class="relative min-h-screen w-screen bg-neutral-900">
 
-        <div class="w-full flex items-center justify-center pt-20 lg:pt-32 relative mb-8 lg:mb-20">
+        <div class="w-full flex items-center justify-center pt-28 lg:pt-32 relative mb-8 lg:mb-20">
             <div class="hidden sm:block w-[60vw] h-[0.1rem] bg-white"></div>
             <div class="absolute z-10 w-full flex justify-center">
                 <h2 class="text-white font-bold text-3xl lg:text-5xl py-2 px-8 bg-neutral-900">Projects</h2>
@@ -158,10 +161,12 @@
 
         <div class="grid lg:grid-cols-4 gap-4 lg:gap-8 py-4 px-4 lg:px-[10vw] overflow-y-auto">
             {#each data.projects as project, i}
-                <ProjectCard {project}/>
+                {#if !(isMobile && i > 1) }
+                    <ProjectCard {project}/>
+                {/if}
             {/each}
-            <a class="projectCard flex justify-center items-center font-bold text-white" href="/projects">
-                View More
+            <a class="projectCard h-14 lg:h-full flex justify-center items-center font-bold text-white" href="/projects">
+                View {isMobile ? "12" : "4"} More
             </a>
         </div>
     </section>
