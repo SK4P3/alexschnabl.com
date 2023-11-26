@@ -9,6 +9,7 @@ export interface Project {
     url: string;
     keywords: string[];
     description: string;
+    cover: string;
     image: string;
 }
 

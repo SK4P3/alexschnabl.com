@@ -13,7 +13,9 @@
     <meta name="description" content={`Learn more about Alex Schnabls Project: ${project.name}`}>
 </svelte:head>
 
+
 <div class="w-full min-h-screen flex flex-col justify-center bg-neutral-900 px-4 lg:px-20 pt-20 lg:pt-0">
+    <a class="btn btn-sm btn-outline text-white hover:bg-white w-14 mb-4" href="/projects">back</a>
     <div class="grid lg:grid-cols-2 gap-8 mb-8">
         <img class="rounded-md" src={getWebpUrl(project.image, ImageQuality.LOW)} alt="Project - {project.name}"/>
         <div class="flex flex-col justify-between w-full">

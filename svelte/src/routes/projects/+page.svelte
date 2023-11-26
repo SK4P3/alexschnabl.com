@@ -1,7 +1,8 @@
 <script lang="ts">
     import type {PageData} from "./$types";
-    import ArticleCard from "$lib/components/ArticleCard.svelte";
+    import ArticleCard from "$lib/components/cards/ArticleCard.svelte";
     import DividerH2 from "$lib/components/DividerH2.svelte";
+    import ProjectCardLg from "$lib/components/cards/ProjectCardLg.svelte";
 
     export let data: PageData;
 </script>
@@ -19,32 +20,40 @@
     </div>
 
     <DividerH2 title="SaaS"/>
-    {#each data.projects as project}
-        {#if project.type === "saas"}
-            {project.name}
-        {/if}
-    {/each}
+    <div class="grid lg:grid-cols-4 gap-4 lg:gap-8 py-4 px-4 lg:px-[10vw] overflow-y-auto">
+        {#each data.projects as project}
+            {#if project.type === "saas"}
+                <ProjectCardLg {project}/>
+            {/if}
+        {/each}
+    </div>
 
     <DividerH2 title="Websites"/>
-    {#each data.projects as project}
-        {#if project.type === "website"}
-            {project.name}
-        {/if}
-    {/each}
+    <div class="grid lg:grid-cols-4 gap-4 lg:gap-8 py-4 px-4 lg:px-[10vw] overflow-y-auto">
+        {#each data.projects as project}
+            {#if project.type === "website"}
+                <ProjectCardLg {project}/>
+            {/if}
+        {/each}
+    </div>
 
     <DividerH2 title="Open Source"/>
-    {#each data.projects as project}
-        {#if project.type === "open-source"}
-            {project.name}
-        {/if}
-    {/each}
+    <div class="grid lg:grid-cols-4 gap-4 lg:gap-8 py-4 px-4 lg:px-[10vw] overflow-y-auto">
+        {#each data.projects as project}
+            {#if project.type === "open-source"}
+                <ProjectCardLg {project}/>
+            {/if}
+        {/each}
+    </div>
 
     <DividerH2 title="Publications"/>
-    {#each data.projects as project}
-        {#if project.type === "publication"}
-            {project.name}
-        {/if}
-    {/each}
+    <div class="grid lg:grid-cols-4 gap-4 lg:gap-8 py-4 px-4 lg:px-[10vw] overflow-y-auto">
+        {#each data.projects as project}
+            {#if project.type === "publication"}
+                <ProjectCardLg {project}/>
+            {/if}
+        {/each}
+    </div>
 
     <!--<div class="grid grid-cols-1 xl:grid-cols-2 w-full gap-8 px-[10vw] py-8">-->
     <!--    {#each data.projects as project}-->

@@ -1,8 +1,8 @@
 <script lang="ts">
-    import SlideButton from "$lib/components/SlideButton.svelte";
+    import SlideButton from "$lib/components/buttons/SlideButton.svelte";
     import {writable} from "svelte/store";
     import Timeline from "$lib/components/Timeline.svelte";
-    import ProjectCard from "$lib/components/ProjectCard.svelte";
+    import ProjectCard from "$lib/components/cards/ProjectCard.svelte";
     import {onMount} from "svelte";
     import {currentSection, getWebpUrl, ImageQuality, sections} from "$lib/common";
     import type {PageData} from "./$types";

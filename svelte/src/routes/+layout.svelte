@@ -1,8 +1,8 @@
 <script lang="ts">
     import "../app.css";
-    import Navbar from "$lib/components/Navbar.svelte";
+    import Navbar from "$lib/components/navigation/Navbar.svelte";
     import {fade} from "svelte/transition";
-    import Footer from "$lib/components/Footer.svelte";
+    import Footer from "$lib/components/navigation/Footer.svelte";
     import {page} from "$app/stores";
     import {onMount} from "svelte";
 

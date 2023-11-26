@@ -26,9 +26,7 @@
                 <li>
                     <button on:click={() => scrollToSection(1)}>About</button>
                 </li>
-                <li>
-                    <button on:click={() => scrollToSection(2)}>Projects</button>
-                </li>
+                <li><a href="/projects">Projects</a></li>
                 <li>
                     <button on:click={() => scrollToSection(3)}>Contact</button>
                 </li>
@@ -45,9 +43,7 @@
             <li>
                 <button class="hover:underline underline-offset-2" on:click={() => scrollToSection(1)}>About</button>
             </li>
-            <li>
-                <button class="hover:underline underline-offset-2" on:click={() => scrollToSection(2)}>Projects</button>
-            </li>
+            <li><a href="/projects">Projects</a></li>
             <li>
                 <button class="hover:underline underline-offset-2" on:click={() => scrollToSection(3)}>Contact</button>
             </li>

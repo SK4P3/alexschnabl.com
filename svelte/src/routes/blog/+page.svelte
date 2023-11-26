@@ -1,6 +1,6 @@
 <script lang="ts">
     import type {PageData} from "./$types";
-    import ArticleCard from "$lib/components/ArticleCard.svelte";
+    import ArticleCard from "$lib/components/cards/ArticleCard.svelte";
 
     export let data: PageData;
 </script>
