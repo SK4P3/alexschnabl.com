@@ -28,14 +28,68 @@
     let contact: HTMLAnchorElement;
     let imprint: HTMLAnchorElement;
 
+
+    let isTrackPad: boolean | undefined;
+    let eventCount = 0;
+    let eventCountStart: any;
+
     onMount(() => {
         sections.set([home, about, projects, contact, imprint]);
         scrollContainer.addEventListener('wheel', snapScrolling);
+        scrollContainer.addEventListener('wheel', detectTrackpad);
         scrollContainer.addEventListener('touchstart', swipeStart);
         scrollContainer.addEventListener('touchmove', snapSwipe);
 
         document.addEventListener("keydown", arrowScroll);
     });
+
+
+    function snapScrolling(evt: any) {
+        const scrollDown = evt.deltaY > 0;
+        if (!excludedSnapScrolling(scrollDown)) {
+            evt.preventDefault();
+            handleScroll(scrollDown);
+        }
+    }
+
+    let timer: any = null;
+
+    function detectTrackpad(evt: any) {
+        evt.preventDefault();
+
+        if (timer !== null) {
+            clearTimeout(timer);
+        }
+
+        timer = setTimeout(function () {
+            scrollContainer.addEventListener('wheel', snapScrolling);
+        }, 150);
+
+        let isTrackPadDefined = isTrackPad || typeof isTrackPad !== "undefined";
+        if (isTrackPadDefined) return;
+
+        if (eventCount === 0) {
+            eventCountStart = performance.now();
+        }
+
+        eventCount++;
+
+        if (performance.now() - eventCountStart > 66) {
+            isTrackPad = eventCount > 5;
+
+            if (isTrackPad)
+                scrollContainer.removeEventListener('wheel', snapScrolling);
+
+            isTrackPadDefined = true;
+
+            setTimeout(() => {
+                isTrackPad = undefined;
+                eventCount = 0;
+                eventCountStart = 0;
+                scrollContainer.addEventListener('wheel', snapScrolling);
+            }, 1000);
+        }
+    }
 
     function arrowScroll(evt: any) {
         if (evt.key === "ArrowDown") {
@@ -52,14 +106,6 @@
         const projectsHeight = contact.offsetTop - projects.offsetTop;
         const scrollUpInProjects = scrollDown || (window.scrollY >= (projects.offsetTop + projectsHeight * 0.1) && (projects.offsetTop + projectsHeight * 0.7) >= window.scrollY)
         return scrollUpInProjects && isMobile && window.scrollY >= projects.offsetTop && (projects.offsetTop + projectsHeight * 0.7) >= window.scrollY
-    }
-
-    function snapScrolling(evt: any) {
-        const scrollDown = evt.deltaY > 0;
-        if (!excludedSnapScrolling(scrollDown)) {
-            evt.preventDefault();
-            handleScroll(scrollDown);
-        }
     }
 
     function swipeStart(evt: any) {
@@ -85,10 +131,10 @@
             scrollingDisabled = true;
 
             if (scrollDown && $currentSection < $sections.length - 1) {
-                currentSection.update((n) => ++n);
+                currentSection.update((n: any) => ++n);
                 scrollToSection($currentSection);
             } else if (!scrollDown && $currentSection !== 0) {
-                currentSection.update((n) => --n);
+                currentSection.update((n: any) => --n);
                 scrollToSection($currentSection);
             }
 
