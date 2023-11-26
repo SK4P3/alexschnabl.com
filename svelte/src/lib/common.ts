@@ -5,6 +5,7 @@ import Locals = App.Locals;
 export interface Project {
     id: string;
     name: string;
+    type: string;
     url: string;
     keywords: string[];
     description: string;

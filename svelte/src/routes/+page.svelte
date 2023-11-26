@@ -152,7 +152,7 @@
         <div class="w-full flex items-center justify-center pt-20 lg:pt-32 relative mb-8 lg:mb-20">
             <div class="hidden sm:block w-[60vw] h-[0.1rem] bg-white"></div>
             <div class="absolute z-10 w-full flex justify-center">
-                <h2 class="text-white font-bold text-3xl lg:text-5xl py-2 px-8 bg-neutral-900">My Projects</h2>
+                <h2 class="text-white font-bold text-3xl lg:text-5xl py-2 px-8 bg-neutral-900">Projects</h2>
             </div>
         </div>
 
@@ -160,6 +160,9 @@
             {#each data.projects as project, i}
                 <ProjectCard {project}/>
             {/each}
+            <a class="projectCard flex justify-center items-center font-bold text-white" href="/projects">
+                View More
+            </a>
         </div>
     </section>
 

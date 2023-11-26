@@ -4,6 +4,11 @@
     import {fade} from "svelte/transition";
     import Footer from "$lib/components/Footer.svelte";
     import {page} from "$app/stores";
+    import {onMount} from "svelte";
+
+    onMount(() => {
+        localStorage.setItem('cookie1', 'i use arch btw...');
+    })
 
     export let data: any;
 </script>
