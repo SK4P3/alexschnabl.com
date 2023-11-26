@@ -6,16 +6,9 @@
     import {onMount} from "svelte";
     import {currentSection, getWebpUrl, ImageQuality, sections} from "$lib/common";
     import type {PageData} from "./$types";
+    import AgeInSeconds from "$lib/components/AgeInSeconds.svelte";
 
     export let data: PageData;
-
-    let ms = +new Date() - +new Date(2002, 9, 23);
-    let age = writable<number>(Math.floor(ms / 1000));
-
-    setInterval(() => {
-        ms = +new Date() - +new Date(2002, 9, 23);
-        age.set(Math.floor(ms / 1000));
-    }, 1000);
 
     let scrollContainer: HTMLDivElement;
     let scrollingDisabled = false;
@@ -28,66 +21,22 @@
     let contact: HTMLAnchorElement;
     let imprint: HTMLAnchorElement;
 
-
-    let isTrackPad: boolean | undefined;
-    let eventCount = 0;
-    let eventCountStart: any;
-
     onMount(() => {
         sections.set([home, about, projects, contact, imprint]);
         scrollContainer.addEventListener('wheel', snapScrolling);
-        scrollContainer.addEventListener('wheel', detectTrackpad);
         scrollContainer.addEventListener('touchstart', swipeStart);
         scrollContainer.addEventListener('touchmove', snapSwipe);
 
         document.addEventListener("keydown", arrowScroll);
     });
 
-
     function snapScrolling(evt: any) {
         const scrollDown = evt.deltaY > 0;
-        if (!excludedSnapScrolling(scrollDown)) {
-            evt.preventDefault();
-            handleScroll(scrollDown);
-        }
-    }
-
-    let timer: any = null;
-
-    function detectTrackpad(evt: any) {
         evt.preventDefault();
 
-        if (timer !== null) {
-            clearTimeout(timer);
-        }
-
-        timer = setTimeout(function () {
-            scrollContainer.addEventListener('wheel', snapScrolling);
-        }, 150);
-
-        let isTrackPadDefined = isTrackPad || typeof isTrackPad !== "undefined";
-        if (isTrackPadDefined) return;
-
-        if (eventCount === 0) {
-            eventCountStart = performance.now();
-        }
-
-        eventCount++;
-
-        if (performance.now() - eventCountStart > 66) {
-            isTrackPad = eventCount > 5;
-
-            if (isTrackPad)
-                scrollContainer.removeEventListener('wheel', snapScrolling);
-
-            isTrackPadDefined = true;
-
-            setTimeout(() => {
-                isTrackPad = undefined;
-                eventCount = 0;
-                eventCountStart = 0;
-                scrollContainer.addEventListener('wheel', snapScrolling);
-            }, 1000);
+        // ignore scroll inertia
+        if (Math.abs(evt.deltaY) > 15) {
+            handleScroll(scrollDown);
         }
     }
 
@@ -99,13 +48,6 @@
             evt.preventDefault();
             handleScroll(false);
         }
-    }
-
-    function excludedSnapScrolling(scrollDown: boolean) {
-        const isMobile = window.innerWidth < 768;
-        const projectsHeight = contact.offsetTop - projects.offsetTop;
-        const scrollUpInProjects = scrollDown || (window.scrollY >= (projects.offsetTop + projectsHeight * 0.1) && (projects.offsetTop + projectsHeight * 0.7) >= window.scrollY)
-        return scrollUpInProjects && isMobile && window.scrollY >= projects.offsetTop && (projects.offsetTop + projectsHeight * 0.7) >= window.scrollY
     }
 
     function swipeStart(evt: any) {
@@ -120,10 +62,8 @@
         const diffY = touch.clientY - startY;
         const scrollDown = diffY < 0;
 
-        if (!excludedSnapScrolling(scrollDown)) {
-            evt.preventDefault();
-            handleScroll(scrollDown);
-        }
+        evt.preventDefault();
+        handleScroll(scrollDown);
     }
 
     function handleScroll(scrollDown: boolean) {
@@ -199,7 +139,7 @@
             <div class="col-start-2 col-span-2 flex items-center w-full h-screen">
                 <div class="flex flex-col justify-center w-full font-medium">
                     <div class="agetext">I'm currently</div>
-                    <div class="agetext">{$age} seconds</div>
+                    <AgeInSeconds/>
                     <div class="agetext">old</div>
                 </div>
             </div>
@@ -209,15 +149,15 @@
     <a id="projects" bind:this={projects}/>
     <section class="relative min-h-screen w-screen bg-neutral-900">
 
-        <div class="w-full flex items-center justify-center pt-28 lg:pt-32 relative mb-20">
+        <div class="w-full flex items-center justify-center pt-20 lg:pt-32 relative mb-8 lg:mb-20">
             <div class="hidden sm:block w-[60vw] h-[0.1rem] bg-white"></div>
             <div class="absolute z-10 w-full flex justify-center">
                 <h2 class="text-white font-bold text-3xl lg:text-5xl py-2 px-8 bg-neutral-900">My Projects</h2>
             </div>
         </div>
 
-        <div class="grid lg:grid-cols-4 gap-8 py-4 px-4 lg:px-[10vw] overflow-y-auto">
-            {#each data.projects as project}
+        <div class="grid lg:grid-cols-4 gap-4 lg:gap-8 py-4 px-4 lg:px-[10vw] overflow-y-auto">
+            {#each data.projects as project, i}
                 <ProjectCard {project}/>
             {/each}
         </div>
