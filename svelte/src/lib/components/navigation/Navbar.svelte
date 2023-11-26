@@ -30,7 +30,7 @@
                 <li>
                     <button on:click={() => scrollToSection(3)}>Contact</button>
                 </li>
-                <li><a class="hover:underline underline-offset-2" href="/blog">Blog</a></li>
+                <li><a href="/blog">Blog</a></li>
             </ul>
         </div>
         <button class="hidden lg:block font-bold text-3xl text-white pl-16" on:click={() => scrollToSection(0)}>AS</button>
@@ -43,7 +43,7 @@
             <li>
                 <button class="hover:underline underline-offset-2" on:click={() => scrollToSection(1)}>About</button>
             </li>
-            <li><a href="/projects">Projects</a></li>
+            <li><a class="hover:underline underline-offset-2" href="/projects">Projects</a></li>
             <li>
                 <button class="hover:underline underline-offset-2" on:click={() => scrollToSection(3)}>Contact</button>
             </li>
